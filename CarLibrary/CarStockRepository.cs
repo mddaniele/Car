@@ -1,9 +1,10 @@
 ﻿using System.Text.Json;
 using CarLibrary.Dto;
+using CarLibrary.Interfaces;
 
 namespace CarLibrary
 {
-    public class CarStock
+    public class CarStockRepository : ICarStockRepository 
     {
         private List<Car> _cars = [];
 
@@ -12,6 +13,7 @@ namespace CarLibrary
             _cars.Add(car);
         }
 
+        // loading from json for convenience reasons
         public void LoadCarsFromJson(string filePath)
         {
             var json = File.ReadAllText(filePath);
@@ -23,18 +25,9 @@ namespace CarLibrary
                 {
                     "Ford" => new Ford(carDto.Year),
                     "VW" => new VW(carDto.Year),
-                    _ => throw new InvalidOperationException("Unbekannte Marke")
+                    _ => throw new InvalidOperationException("Unbekannte Marke") //assumption: unkown brands should lead to an exception
                 };
                 AddCar(car);
-            }
-        }
-
-        public IEnumerable<string> PrintInventory()
-        {
-            yield return "Marke\tJahrgang\tMax Speed";
-            foreach (var car in _cars)
-            {
-                yield return car.ToString();
             }
         }
 

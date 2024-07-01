@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CarStockService.cs" />
     <Compile Remove="ICarStockRepository.cs" />
     <Compile Remove="ICarStockService.cs" />
   </ItemGroup>

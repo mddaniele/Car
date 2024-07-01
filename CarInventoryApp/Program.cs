@@ -1,18 +1,22 @@
 ﻿using CarLibrary;
+using CarLibrary.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 class Program
 {
     static void Main(string[] args)
     {
-        var carstock = new CarStock();
+        var services = new ServiceCollection()
+            .AddScoped<ICarStockService, CarStockService>()
+            .AddScoped<ICarStockRepository, CarStockRepository>()
+            .BuildServiceProvider();
+
+        var carstockService = services.GetService<ICarStockService>();
 
         // Autos aus JSON-Datei laden
-        carstock.LoadCarsFromJson("cars.json");
+        carstockService.LoadCarsFromJson("cars.json");
 
         // Inventurliste ausgeben
-        foreach (var line in carstock.PrintInventory())
-        {
-            Console.WriteLine(line);
-        }
+        Console.WriteLine(carstockService.PrintInventory());
     }
 }

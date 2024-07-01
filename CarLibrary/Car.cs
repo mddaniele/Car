@@ -11,8 +11,8 @@
 
         protected Car(string brand, int year)
         {
-            ArgumentOutOfRangeException.ThrowIfLessThan(year, 1885, nameof(year)); // oldest car is from 1885, older car shouldn't be accepted
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(year, DateTime.Today.Year, nameof(year)); // newer car than current date shouldn't be accepted
+            ArgumentOutOfRangeException.ThrowIfLessThan(year, 1885, nameof(year)); // Assumption: oldest car is from 1885, older car shouldn't be accepted
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(year, DateTime.Today.Year, nameof(year)); // Assumption: newer car than current date shouldn't be accepted
 
             Brand = brand;
             Year = year;
@@ -21,6 +21,7 @@
 
         public void AddWheel(string wheelPosition)
         {
+            // Assumption: There can never be more than 4 Wheels, adding more leads to an exception
             if (_wheels.Count >= 4)
                 throw new InvalidOperationException("Ein Auto kann nicht mehr als 4 Räder haben.");
 
@@ -29,9 +30,7 @@
 
         public void RemoveWheel(string wheelPosition)
         {
-            if (_wheels.Count <= 0)
-                throw new InvalidOperationException("Ein Auto muss mindestens 0 Räder haben.");
-
+            // Assumption: Wheels should be removable
             _wheels.Remove(wheelPosition);
         }
 
