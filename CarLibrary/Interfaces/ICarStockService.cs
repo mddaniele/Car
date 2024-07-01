@@ -5,6 +5,5 @@
         IEnumerable<string> GetPrintableLines();
         string PrintInventory();
         void LoadCarsFromJson(string filePath);
-
     }
 }

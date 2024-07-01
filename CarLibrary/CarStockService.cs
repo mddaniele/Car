@@ -31,6 +31,5 @@ namespace CarLibrary
         {
             _carStockRepository.LoadCarsFromJson(filePath);
         }
-
     }
 }

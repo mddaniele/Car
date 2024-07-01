@@ -138,9 +138,5 @@ namespace CarLibrary.Test
             Assert.Contains("VW\t1983\t180 km/h", output);
         }
         #endregion
-
-
-
-
     }
 }

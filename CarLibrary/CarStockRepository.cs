@@ -4,7 +4,7 @@ using CarLibrary.Interfaces;
 
 namespace CarLibrary
 {
-    public class CarStockRepository : ICarStockRepository 
+    public class CarStockRepository : ICarStockRepository
     {
         private List<Car> _cars = [];
 
