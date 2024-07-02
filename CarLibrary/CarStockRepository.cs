@@ -18,6 +18,9 @@ namespace CarLibrary
         {
             var json = File.ReadAllText(filePath);
             var carDtos = JsonSerializer.Deserialize<List<CarDto>>(json);
+            
+            if (carDtos == null || carDtos.Count == 0)
+                throw new ArgumentException("Json File enthält keine Cars");
 
             foreach (var carDto in carDtos)
             {
@@ -25,7 +28,7 @@ namespace CarLibrary
                 {
                     "Ford" => new Ford(carDto.Year),
                     "VW" => new VW(carDto.Year),
-                    _ => throw new InvalidOperationException("Unbekannte Marke") //assumption: unkown brands should lead to an exception
+                    _ => throw new InvalidOperationException("Unbekannte Marke") //assumption: unknown brands should lead to an exception
                 };
                 AddCar(car);
             }

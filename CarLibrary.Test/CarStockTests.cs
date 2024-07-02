@@ -105,7 +105,7 @@ namespace CarLibrary.Test
         }
 
         [Fact]
-        public void CarStockRepository_LoadCarsFromJson_ShouldThrowExceptionIfUnkownBrand()
+        public void CarStockRepository_LoadCarsFromJson_ShouldThrowExceptionIfUnknownBrand()
         {
             // Arrange
             var carStock = new CarStockRepository();
@@ -115,6 +115,20 @@ namespace CarLibrary.Test
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => carStock.LoadCarsFromJson(filePath));
+            File.Delete(filePath);
+        }
+
+        [Fact]
+        public void CarStockRepository_LoadCarsFromJson_ShouldThrowExceptionIfEmpttyJson()
+        {
+            // Arrange
+            var carStock = new CarStockRepository();
+            var json = "[]";
+            var filePath = "test_cars.json";
+            File.WriteAllText(filePath, json);
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => carStock.LoadCarsFromJson(filePath));
             File.Delete(filePath);
         }
         #endregion

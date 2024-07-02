@@ -5,7 +5,7 @@
         public string Brand { get; }
         public int Year { get; }
         public int MaxSpeed { get; protected set; }
-        private List<string> _wheels;
+        private List<string> _wheels; // As wheels have no futher functionality than having a label, a string representation is sufficient
 
         public IReadOnlyList<string> Wheels => _wheels.AsReadOnly();
 
@@ -16,7 +16,7 @@
 
             Brand = brand;
             Year = year;
-            _wheels = ["Vorne rechts", "Vorne links", "Hinten rechts", "Hinten links"];
+            _wheels = ["Vorne rechts", "Vorne links", "Hinten rechts", "Hinten links"]; 
         }
 
         public void AddWheel(string wheelPosition)
