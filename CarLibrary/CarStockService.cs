@@ -18,18 +18,18 @@ namespace CarLibrary
             return writer.ToString();
         }
 
-        public IEnumerable<string> GetPrintableLines()
+        public void LoadCarsFromJson(string filePath)
+        {
+            _carStockRepository.LoadCarsFromJson(filePath);
+        }
+
+        private IEnumerable<string> GetPrintableLines()
         {
             yield return "Marke\tJahrgang\tMax Speed";
             foreach (var car in _carStockRepository.GetInventory())
             {
                 yield return car.ToString();
             }
-        }
-
-        public void LoadCarsFromJson(string filePath)
-        {
-            _carStockRepository.LoadCarsFromJson(filePath);
         }
     }
 }
